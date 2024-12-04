@@ -1,6 +1,8 @@
-package ToDo;
+package ToDo.service;
 
-public interface ToDoOperations {
+import ToDo.model.ToDO;
+
+public interface ToDoService {
     void seeAllTask();
     void addTask(Integer id ,String title,  ToDO.Status s);
     void removeTask(Integer id);

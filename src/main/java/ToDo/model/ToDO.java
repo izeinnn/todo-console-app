@@ -1,4 +1,4 @@
-package ToDo;
+package ToDo.model;
 
 public class ToDO {
     private Integer id;

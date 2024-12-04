@@ -1,11 +1,14 @@
-package ToDo;
+package ToDo.starter;
+
+import ToDo.model.ToDO;
+import ToDo.service.ToDoServiceImpl;
 
 import java.util.Scanner;
 
 public class Starter {
     final ToDO toDO;
-    final ToDoOperation toDoOperation;
-    public Starter(ToDO toDO, ToDoOperation toDoOperation) {
+    final ToDoServiceImpl toDoOperation;
+    public Starter(ToDO toDO, ToDoServiceImpl toDoOperation) {
         this.toDO = toDO;
         this.toDoOperation = toDoOperation;
     }

@@ -1,21 +1,23 @@
-package ToDo;
+package ToDo.service;
+
+import ToDo.model.ToDO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.*;
 
-public class ToDoOperation implements ToDoOperations {
-    //DI
+public class ToDoServiceImpl implements ToDoService {
+    //DI  constructor injection.
     private ToDO toDO;
-    public ToDoOperation(ToDO toDO) {
+    public ToDoServiceImpl(ToDO toDO) {
         this.toDO = toDO;
     }
     //
-    public ToDoOperation() {}
+    public ToDoServiceImpl() {}
 
     //JDBC
-    String URL = "jdbc:postgresql://localhost:5432/person";
+    String URL = "jdbc:postgresql://localhost:5432/tasks";
     String USER = "postgres";
     String PASS = "00000";
     private Connection connect() throws SQLException {
@@ -27,8 +29,10 @@ public class ToDoOperation implements ToDoOperations {
     @Override
     public void seeAllTask() {
         System.out.println("*************************");
-        String query = "SELECT * FROM person";
-        try (Connection con = connect(); Statement st = con.createStatement(); ResultSet rs = st.executeQuery(query)) {
+        String query = "SELECT * FROM task";
+        try (Connection con = connect();
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
             while (rs.next()) {
                 System.out.println("ID: " + rs.getInt("id") + ", Title: " + rs.getString("title") + ", Status: " + rs.getString("status"));
             }
@@ -40,8 +44,9 @@ public class ToDoOperation implements ToDoOperations {
 
     @Override
     public void addTask(Integer id ,String   title, ToDO.Status status) {
-        String query = "INSERT INTO person (id, title,status) VALUES (?, ?, ?)";
-        try (Connection conn = connect(); PreparedStatement st = conn.prepareStatement(query)) {
+        String query = "INSERT INTO task (id, title,status) VALUES (?, ?, ?)";
+        try (Connection conn = connect();
+             PreparedStatement st = conn.prepareStatement(query)) {
             st.setInt(1, id);
             st.setString(2, title);
             st.setString(3, status.name());
@@ -53,7 +58,7 @@ public class ToDoOperation implements ToDoOperations {
 
     @Override
     public void updateTask(Integer id, String t, ToDO.Status s) {
-        String query = "UPDATE person SET title = ?, status = ? WHERE id = ?";
+        String query = "UPDATE task SET title = ?, status = ? WHERE id = ?";
         try {
             Connection con= connect();
             PreparedStatement st=con.prepareStatement(query);
@@ -68,7 +73,7 @@ public class ToDoOperation implements ToDoOperations {
 
     @Override
     public void removeTask(Integer id) {
-        String query="DELETE  FROM person where id=?";
+        String query="DELETE  FROM task where id=?";
         try {
             Connection con= connect();
             PreparedStatement st=con.prepareStatement(query);
