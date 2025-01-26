@@ -8,6 +8,8 @@ The application provides a console-based interface with the following options:
 4. **Remove Task**: Remove a task from the database.
 5. **Exit**: Exit the application.
 
+This project uses JDBC to interact with the database (queser DB).
+
 ## Project Files
 
 - `Main.java`: Entry point of the application.
@@ -15,6 +17,7 @@ The application provides a console-based interface with the following options:
 - `ToDo.java`: Task model representation.
 - `ToDoService.java`: Service interface for task operations.
 - `ToDoServiceImpl.java`: Implements task management logic.
+
 
 ## License
 
