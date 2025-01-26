@@ -17,9 +17,9 @@ public class ToDoServiceImpl implements ToDoService {
     public ToDoServiceImpl() {}
 
     //JDBC
-    String URL = "jdbc:postgresql://localhost:5432/tasks";
+    String URL = "jdbc:postgresql://localhost:5432/DB_name";
     String USER = "postgres";
-    String PASS = "00000";
+    String PASS = "DB_PASSWROD";
     private Connection connect() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASS);
     }
